@@ -2,11 +2,12 @@ export class Model {
     user;
     items;
     constructor() {
-        this.user = "Adam";
-        this.items = [new TodoItem("Buy Flowers", false),
+        let todoItems = [new TodoItem("Buy Flowers", false),
         new TodoItem("Get Shoes", false),
         new TodoItem("Collect Tickets", false),
-        new TodoItem("Call Joe", false)]
+        new TodoItem("Call Joe", false)];
+        this.user = "Adam";
+        this.items = todoItems
     }
 }
 export class TodoItem {
