@@ -1,0 +1,19 @@
+{
+  "name": "intro1preparingtheexampleproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "4.1.1"
+  },
+  "devDependencies": {
+    "lite-server": "2.3.0"
+  },
+  "scripts": {
+    "start": "npm run lite",
+    "lite": "lite-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
