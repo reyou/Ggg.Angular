@@ -1,0 +1,5 @@
+### intro
+
+```
+$ ng new awesomeApp
+```
