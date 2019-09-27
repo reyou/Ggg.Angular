@@ -1,3 +1,3 @@
 Set-Location .\store-app
-npm run test
+npm run test 
 Set-Location .\..
