@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Product } from "./product.model";
+/* Marking a class with @Injectable ensures that the compiler will generate 
+the necessary metadata to create the class's dependencies when the class is injected. */
 @Injectable()
 export class Cart {
   public lines: CartLine[] = [];

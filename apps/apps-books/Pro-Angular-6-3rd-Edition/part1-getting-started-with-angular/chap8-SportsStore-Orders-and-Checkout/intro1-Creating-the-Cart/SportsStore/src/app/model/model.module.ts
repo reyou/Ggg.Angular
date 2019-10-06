@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { ProductRepository } from "./product.repository";
 import { StaticDataSource } from "./static.datasource";
+import { Cart } from "./cart.model";
 // The @NgModule decorator is used to create feature modules,
 // and its properties tell Angular how the
 // module should be used.
@@ -11,6 +12,6 @@ import { StaticDataSource } from "./static.datasource";
 // described in Chapter 21.
 
 @NgModule({
-  providers: [ProductRepository, StaticDataSource]
+  providers: [ProductRepository, StaticDataSource, Cart]
 })
 export class ModelModule {}
