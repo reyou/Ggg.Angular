@@ -1,3 +1,2 @@
-```
-$ ng generate component Search
-```
+### Intro
+![](https://i.imgur.com/unvvvRB.png)
