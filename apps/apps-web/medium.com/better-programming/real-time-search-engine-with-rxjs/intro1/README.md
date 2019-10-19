@@ -1,0 +1,3 @@
+```
+$ ng generate component Search
+```

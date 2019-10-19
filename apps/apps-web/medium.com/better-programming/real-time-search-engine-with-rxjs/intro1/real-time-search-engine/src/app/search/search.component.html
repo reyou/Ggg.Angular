@@ -1,0 +1,8 @@
+<h1>Wiki Search</h1>
+<app-searchbox
+  (loading)="loading = $event"
+  (searchResult)="updateResult($event)"
+></app-searchbox>
+
+<small *ngIf="loading">Searching...</small>
+<app-search-result [searchResult]="searchResult"></app-search-result>
