@@ -24,7 +24,16 @@ export class ProductComponent {
     return this.model.getProducts();
   }
   getProductCount(): number {
+    console.log("getProductCount invoked");
     return this.getProducts().length;
   }
+  get nextProduct(): Product {
+    return this.model.getProducts().shift();
+  }
+  getProductPrice(index: number): number {
+    return Math.floor(this.getProduct(index).price);
+  }
+
   targetName: string = "Kayak";
+  counter: number = 1;
 }
