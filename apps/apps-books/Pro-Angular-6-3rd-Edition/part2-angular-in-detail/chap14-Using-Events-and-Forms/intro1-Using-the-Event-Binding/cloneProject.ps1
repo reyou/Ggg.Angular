@@ -1,5 +1,6 @@
-$source = "D:\Git\Ggg.Github\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part2-angular-in-detail\chap13-Using-the-Built-in-Directives\intro1-Built-in-Directives";
-$destination = "D:\Git\Ggg.Github\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part2-angular-in-detail\chap14-Using-Events-and-Forms\intro1-Using-the-Event-Binding";
+# source, destination
+$s = "D:\Git\Ggg.Github\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part2-angular-in-detail\chap14-Using-Events-and-Forms\intro1-Using-the-Event-Binding";
+$d = "D:\Git\Ggg.Github\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part2-angular-in-detail\chap14-Using-Events-and-Forms\intro2-Using-Template-Reference-Variables";
 
-# Remove-Item $destination -Force -Recurse
-Copy-Item $source -Destination $destination -Recurse
+# Remove-Item $d -Force -Recurse
+Copy-Item $s -Destination $d -Recurse
