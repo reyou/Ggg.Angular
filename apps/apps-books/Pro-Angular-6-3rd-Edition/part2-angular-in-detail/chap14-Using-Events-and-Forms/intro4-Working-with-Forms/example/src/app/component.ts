@@ -1,12 +1,24 @@
 import { ApplicationRef, Component } from "@angular/core";
 import { Model } from "./repository.model";
 import { Product } from "./product.model";
+import { NgForm } from "@angular/forms";
 @Component({
   selector: "app",
   templateUrl: "template.html"
 })
 export class ProductComponent {
   model: Model = new Model();
+  formSubmitted: boolean = false;
+  submitForm(form: NgForm) {
+    this.formSubmitted = true;
+    if (form.valid) {
+      this.addProduct(this.newProduct);
+      this.newProduct = new Product();
+      form.reset();
+      this.formSubmitted = false;
+    }
+  }
+
   getProduct(key: number): Product {
     return this.model.getProduct(key);
   }
@@ -19,6 +31,15 @@ export class ProductComponent {
   }
   addProduct(p: Product) {
     console.log("New Product: " + this.jsonProduct);
+  }
+  getFormValidationMessages(form: NgForm): string[] {
+    let messages: string[] = [];
+    Object.keys(form.controls).forEach(k => {
+      this.getValidationMessages(form.controls[k], k).forEach(m =>
+        messages.push(m)
+      );
+    });
+    return messages;
   }
   getValidationMessages(state: any, thingName?: string) {
     let thing: string = state.path || thingName;
