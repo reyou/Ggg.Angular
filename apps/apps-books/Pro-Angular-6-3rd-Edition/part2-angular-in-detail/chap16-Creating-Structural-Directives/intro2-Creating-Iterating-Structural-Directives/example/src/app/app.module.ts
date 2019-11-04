@@ -7,6 +7,7 @@ import { Intro1Directive } from "./directives/intro1.directive";
 import { Intro2Directive } from "./directives/intro2.directive";
 import { PaModel } from "./twoway.directive";
 import { PaStructureDirective } from "./structure.directive";
+import { PaIteratorDirective } from "./iterator.directive";
 /*The imports property of the NgModule decorator specifies the dependencies of the application. 
 Adding FormsModule to the list of dependencies enables the form features and makes them available for use
 throughout the application. */
@@ -18,7 +19,8 @@ throughout the application. */
     Intro1Directive,
     Intro2Directive,
     PaModel,
-    PaStructureDirective
+    PaStructureDirective,
+    PaIteratorDirective
   ],
   bootstrap: [ProductComponent]
 })
