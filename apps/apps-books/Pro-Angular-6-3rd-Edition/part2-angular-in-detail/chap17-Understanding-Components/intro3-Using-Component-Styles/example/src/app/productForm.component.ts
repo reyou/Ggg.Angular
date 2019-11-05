@@ -4,7 +4,8 @@ import { ProductFormGroup } from "./form.model";
 import { Intro1Class } from "./Intro1Class";
 @Component({
   selector: "paProductForm",
-  templateUrl: "productForm.component.html"
+  templateUrl: "productForm.component.html",
+  styleUrls: ["productForm.component.css"]
 })
 export class ProductFormComponent {
   form: ProductFormGroup = new ProductFormGroup();
