@@ -29,6 +29,9 @@ export class ProductComponent {
   addProduct(p: Product) {
     this.model.saveProduct(p);
   }
+  intro1OnClick(intro1Ref: Intro1Class) {
+    alert(JSON.stringify(intro1Ref));
+  }
   deleteProduct(key: number) {
     this.model.deleteProduct(key);
   }

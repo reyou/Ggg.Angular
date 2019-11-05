@@ -1,0 +1,10 @@
+<!-- The important element is ng-content, which Angular will replace with the content of the host element.
+The ngIf directive has been applied to the ng-content element so that it will be visible only if the checkbox
+in the template is checked.  -->
+<div class="checkbox">
+  <label>
+    <input type="checkbox" [(ngModel)]="showContent" />
+    Show Content
+  </label>
+</div>
+<ng-content *ngIf="showContent"></ng-content>

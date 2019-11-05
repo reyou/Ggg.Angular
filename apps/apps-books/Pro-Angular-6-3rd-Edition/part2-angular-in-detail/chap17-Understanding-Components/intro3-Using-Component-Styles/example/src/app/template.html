@@ -1,0 +1,15 @@
+<!-- controller: component.ts -->
+<!-- ref: attr.directive.ts -->
+<div class="row text-white m-2">
+  <div class="col-4 p-2 text-dark">
+    <paProductForm
+      (paNewProduct)="addProduct($event)"
+      (intro1EventListener)="intro1OnClick($event)"
+    ></paProductForm>
+  </div>
+  <div class="col-8 p-2 bg-primary">
+    <paToggleView>
+      <paProductTable [model]="model" [intro1]="intro1"></paProductTable>
+    </paToggleView>
+  </div>
+</div>
