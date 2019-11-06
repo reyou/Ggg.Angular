@@ -11,5 +11,16 @@ export class AppComponent {
   pdfViewerOnDemand: PdfJsViewerComponent;
 
   title = "pdfjs-viewer-example";
-  public next() {}
+  getPageText = async (pdf: any, pageNo: number) => {
+    const page = await pdf.getPage(pageNo);
+    const tokenizedText = await page.getTextContent();
+    const pageText = tokenizedText.items.map(token => token.str).join("");
+    return pageText;
+  };
+  // https://stackoverflow.com/questions/40635979/how-to-correctly-extract-text-from-a-pdf-using-pdf-js
+  public async text() {
+    let pdf = this.pdfViewerOnDemand.PDFViewerApplication.pdfDocument;
+    let allText = await this.getPageText(pdf, 2);
+    alert(allText);
+  }
 }
