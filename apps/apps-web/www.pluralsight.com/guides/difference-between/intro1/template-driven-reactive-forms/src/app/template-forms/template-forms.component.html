@@ -1,0 +1,71 @@
+<!-- While Angular would be able to detect the <form> element in the above code
+  (since we have the imported the FormsModule in app.module.ts),
+  we need to register the form controls manually.
+  To do that, we need to add "ngModel" to the form control and also add a
+  "name" attribute to the control.
+  The "ngModel" would bind our input fields to properties on our data model.
+  Also to submit the form, we'll use the (ngSubmit) directive which would get
+  fired whenever the form is submitted. -->
+<!-- Now that we have our form created, let's try and submit the form.
+  We'll also add some basic validations to the form (e.g. we'll mark the Course Name input field as required).
+  Also, we'll add a local reference on the form element, so that we get access to the form in our Typescript code. -->
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="courseName">Course Name</label>
+          <!-- In case we want to assign any default value
+            to any of the fields (e.g. course name),
+            we can bind to the ngModel as shown below: -->
+          <input
+            type="text"
+            id="courseName"
+            class="form-control"
+            name="courseName"
+            [ngModel]="'default course name'"
+            required
+            #courseName="ngModel"
+          />
+        </div>
+        <div
+          style="color:red"
+          *ngIf="courseName.errors && (courseName.dirty || courseName.touched)"
+        >
+          <p *ngIf="courseName.errors.required">
+            Course Name is required
+          </p>
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="courseDesc">Course Description</label>
+          <input
+            type="text"
+            id="courseDesc"
+            class="form-control"
+            name="courseDesc"
+            ngModel
+          />
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="courseAmount">Course Amount</label>
+          <input
+            type="number"
+            id="courseAmount"
+            class="form-control"
+            name="courseAmount"
+            ngModel
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success" type="submit">Add</button>
+          <button class="btn btn-danger" type="button">Delete</button>
+          <button class="btn btn-primary" type="button" (click)="onClear()">
+            Clear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

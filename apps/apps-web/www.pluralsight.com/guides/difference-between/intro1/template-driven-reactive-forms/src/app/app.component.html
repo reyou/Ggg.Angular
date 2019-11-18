@@ -1,0 +1,21 @@
+<nav>
+  <div>
+    <a
+      href="https://www.pluralsight.com/guides/difference-between-template-driven-and-reactive-forms-angular"
+      >Difference between Template-Driven and Reactive Forms in Angular |
+      Pluralsight
+    </a>
+  </div>
+  <div>
+    <a [routerLink]="['/template-forms']" routerLinkActive="router-link-active"
+      >Template Forms</a
+    >
+    <br />
+    <a [routerLink]="['/reactive-forms']" routerLinkActive="router-link-active"
+      >Reactive Forms</a
+    >
+  </div>
+</nav>
+<div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,35 @@
+<!-- While Angular would be able to detect the <form> element in the above code
+  (since we have the imported the FormsModule in app.module.ts),
+  we need to register the form controls manually.
+  To do that, we need to add "ngModel" to the form control and also add a
+  "name" attribute to the control.
+  The "ngModel" would bind our input fields to properties on our data model.
+  Also to submit the form, we'll use the (ngSubmit) directive which would get
+  fired whenever the form is submitted. -->
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="courseName">Course Name</label>
+          <input type="text" id="courseName" class="form-control" />
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="courseDesc">Course Description</label>
+          <input type="text" id="courseDesc" class="form-control" />
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="courseAmount">Course Amount</label>
+          <input type="number" id="courseAmount" class="form-control" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success" type="submit">Add</button>
+          <button class="btn btn-danger" type="button">Delete</button>
+          <button class="btn btn-primary" type="button">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
