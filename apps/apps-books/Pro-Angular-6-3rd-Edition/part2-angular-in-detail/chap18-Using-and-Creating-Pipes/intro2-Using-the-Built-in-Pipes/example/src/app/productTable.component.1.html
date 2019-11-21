@@ -25,29 +25,7 @@
     <option>Chess</option>
   </select>
 </div>
-<div class="bg-info p-2 text-white">
-  <div>Date formatted from object: {{ dateObject | date }}</div>
-  <div>Date formatted from string: {{ dateString | date }}</div>
-  <div>Date formatted from number: {{ dateNumber | date }}</div>
-</div>
-<div class="bg-info p-2 text-white">
-  <div>Date formatted as shortDate: {{ dateObject | date: "shortDate" }}</div>
-  <div>Date formatted as mediumDate: {{ dateObject | date: "mediumDate" }}</div>
-  <div>Date formatted as longDate: {{ dateObject | date: "longDate" }}</div>
-</div>
-<div class="bg-info p-2 text-white">
-  <div>{{ getProducts() | json }}</div>
-</div>
-<div>
-  <label>Number of items:</label
-  ><select [value]="itemCount || 1" (change)="itemCount = $event.target.value"
-    ><option
-      *ngFor="let item of getProducts(); let i = index"
-      [value]="i + 1"
-      >{{ i + 1 }}</option
-    ></select
-  >
-</div>
+
 <table class="table table-sm table-bordered table-striped">
   <tr>
     <th></th>
@@ -58,7 +36,7 @@
   </tr>
   <tr
     *paFor="
-      let item of getProducts() | slice: 0:itemCount || 1;
+      let item of getProducts() | filter: categoryFilter;
       let i = index;
       let odd = odd;
       let even = even
@@ -67,18 +45,21 @@
     [class.bg-warning]="even"
   >
     <td style="vertical-align:middle">{{ i + 1 }}</td>
-    <td style="vertical-align:middle">{{ item.name | uppercase }}</td>
-    <td style="vertical-align:middle">{{ item.category | lowercase }}</td>
+    <td style="vertical-align:middle">{{ item.name }}</td>
+    <td style="vertical-align:middle">{{ item.category }}</td>
     <td style="vertical-align:middle">
-      <!-- Formatting Currency Values -->
-      <div>Number: {{ item.price | number: "3.2-2" }}</div>
-      <div>Currency: {{ item.price | currency: "USD":"symbol":"2.2-2" }}</div>
-      <div>
-        Formatting Percentages:
+      <p>
+        with tax:
+        {{ item.price | addTax: taxRate || 0 | currency: "USD":"symbol" }}
+      </p>
+      <p>fraction: {{ item.price | number: "3.2-2" }}</p>
+      <p>no tax: {{ item.price | currency: "USD":"symbol":"2.2-2" }}</p>
+      <p>
+        symbol:
         {{
           item.price | addTax: taxRate || 0 | currency: "USD":"symbol":"2.2-2"
         }}
-      </div>
+      </p>
     </td>
     <td class="text-xs-center">
       <button class="btn btn-danger btn-sm" (click)="deleteProduct(item.id)">
