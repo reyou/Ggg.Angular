@@ -33,17 +33,26 @@
         Password is required.
       </div>
     </div>
-    <button
-      type="submit"
-      [disabled]="formGroup.pristine || formGroup.invalid"
-      class="btn btn-success"
-    >
-      Log In
-    </button>
+    <div class="form-group">
+      <button
+        type="submit"
+        [disabled]="formGroup.pristine || formGroup.invalid"
+        class="btn btn-success"
+      >
+        Log In
+      </button>
+    </div>
+    <div *ngIf="isErrorMessage()" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="isSuccessMessage()" class="alert alert-success">
+      {{ successMessage }}
+    </div>
   </form>
   <br />
   <div>
     <h2>Debug</h2>
+    <p>loginResponse: {{ loginResponse | json }}</p>
     <p>formGroup.value: {{ formGroup.value | json }}</p>
     <p>formGroup.status: {{ formGroup.status | json }}</p>
     <p>formGroup.touched: {{ formGroup.touched | json }}</p>

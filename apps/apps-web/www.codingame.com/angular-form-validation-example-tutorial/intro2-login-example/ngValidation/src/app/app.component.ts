@@ -8,6 +8,10 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
+import { HttpClientIntro1 } from "./http.service";
+import { Observable } from "rxjs";
+import { HttpResponseIntro1 } from "./http.response";
+import { LoginResponse } from "./login.response";
 
 @Component({
   selector: "app-root",
@@ -17,7 +21,13 @@ import {
 export class AppComponent {
   title = "Angular Form Validation Tutorial";
   formGroup: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  errorMessage: string = "";
+  successMessage: string = "";
+  loginResponse: HttpResponseIntro1<LoginResponse>;
+  constructor(
+    private formBuilder: FormBuilder,
+    private httpClient: HttpClientIntro1
+  ) {
     this.createForm();
   }
   createForm() {
@@ -41,7 +51,19 @@ export class AppComponent {
       validators: Validators.required
     });
   }
+  isErrorMessage() {
+    if (this.errorMessage !== "") {
+      return true;
+    }
+    return false;
+  }
 
+  isSuccessMessage() {
+    if (this.successMessage !== "") {
+      return true;
+    }
+    return false;
+  }
   isInputValid(inputName: string) {
     switch (inputName) {
       case "name":
@@ -75,6 +97,22 @@ export class AppComponent {
     if (!this.formGroup.valid) {
       return false;
     }
-    alert("Login Triggered.");
+    let userName = this.formGroup.controls["name"].value;
+    let password = this.formGroup.controls["password"].value;
+    let loginProducer: Observable<HttpResponseIntro1<
+      LoginResponse
+    >> = this.httpClient.login(userName, password);
+    loginProducer.subscribe(
+      (loginResponse: HttpResponseIntro1<LoginResponse>) => {
+        this.loginResponse = loginResponse;
+        if (loginResponse.isSuccess === false) {
+          this.successMessage = "";
+          this.errorMessage = loginResponse.message;
+        } else {
+          this.successMessage = "Login Successful!";
+          this.errorMessage = "";
+        }
+      }
+    );
   }
 }
