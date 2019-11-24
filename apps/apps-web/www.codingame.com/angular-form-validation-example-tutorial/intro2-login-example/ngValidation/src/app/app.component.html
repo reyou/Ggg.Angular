@@ -1,0 +1,51 @@
+<!-- app.component.html -->
+
+<div class="container">
+  <h1>Welcome to {{ title }}!!</h1>
+  <form [formGroup]="formGroup" novalidate (ngSubmit)="login()">
+    <div class="form-group">
+      <label>User Name:</label>
+      <input class="form-control" formControlName="name" type="text" />
+    </div>
+    <div *ngIf="isInputValid('name')" class="alert alert-danger">
+      <div *ngIf="isInputRequired('name')">
+        User Name is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email:</label>
+      <input class="form-control" formControlName="email" type="text" />
+    </div>
+    <div *ngIf="isInputValid('email')" class="alert alert-danger">
+      <div *ngIf="isInputRequired('email')">
+        Email is required.
+      </div>
+      <div *ngIf="isInputInvalid('email')">
+        Email is not valid.
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <input class="form-control" formControlName="password" type="password" />
+    </div>
+    <div *ngIf="isInputValid('password')" class="alert alert-danger">
+      <div *ngIf="isInputRequired('password')">
+        Password is required.
+      </div>
+    </div>
+    <button
+      type="submit"
+      [disabled]="formGroup.pristine || formGroup.invalid"
+      class="btn btn-success"
+    >
+      Log In
+    </button>
+  </form>
+  <br />
+  <div>
+    <h2>Debug</h2>
+    <p>formGroup.value: {{ formGroup.value | json }}</p>
+    <p>formGroup.status: {{ formGroup.status | json }}</p>
+    <p>formGroup.touched: {{ formGroup.touched | json }}</p>
+  </div>
+</div>
