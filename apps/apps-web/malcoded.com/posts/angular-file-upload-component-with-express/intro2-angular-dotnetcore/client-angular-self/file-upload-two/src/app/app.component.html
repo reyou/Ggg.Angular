@@ -1,0 +1,21 @@
+<input
+  type="file"
+  #file
+  style="display: none"
+  (change)="onFilesAdded()"
+  multiple
+/>
+<button color="primary" (click)="addFiles()">
+  Add Files
+</button>
+
+<div *ngFor="let file of files">
+  <div>
+    {{ file.name }} - {{ file.type }} - {{ file.lastModifiedDate }} -
+    {{ file.size }} -
+    {{ progressSet && progressSet[file.name].progress.progressStatus | async }}
+  </div>
+</div>
+<button color="primary" (click)="upload()">
+  Upload
+</button>
