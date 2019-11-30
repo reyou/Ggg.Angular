@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { UploadService } from "./upload.service";
-import { forkJoin, Observable } from "rxjs";
+import { forkJoin, Observable, of, Subject } from "rxjs";
 import { FileUploadProgressSet } from "./FileUploadProgressSet";
 import { FileUploadProgress } from "./FileUploadProgress";
 
@@ -71,5 +71,44 @@ export class AppComponent {
 
     // ... and the component is no longer uploading
     this.uploading = false;
+  }
+  formatBytes(bytes) {
+    let marker = 1024; // Change to 1000 if required
+    let decimal = 3; // Change as required
+    let kiloBytes = marker; // One Kilobyte is 1024 bytes
+    let megaBytes = marker * marker; // One MB is 1024 KB
+    let gigaBytes = marker * marker * marker; // One GB is 1024 MB
+    let teraBytes = marker * marker * marker * marker; // One TB is 1024 GB
+
+    // return bytes if less than a KB
+    if (bytes < kiloBytes) {
+      return bytes + " Bytes";
+    }
+    // return KB if less than a MB
+    else if (bytes < megaBytes) {
+      return (bytes / kiloBytes).toFixed(decimal) + " KB";
+    }
+    // return MB if less than a GB
+    else if (bytes < gigaBytes) {
+      return (bytes / megaBytes).toFixed(decimal) + " MB";
+    }
+    // return GB if less than a TB
+    else if (bytes < teraBytes) {
+      return (bytes / gigaBytes).toFixed(decimal) + " GB";
+    } else {
+      return (bytes / teraBytes).toFixed(decimal) + " TB";
+    }
+  }
+  getProgress(key: string): Observable<FileUploadProgress> {
+    if (this.progressSet) {
+      let fileUploadProgress: Observable<FileUploadProgress> = this.progressSet[
+        key
+      ].progress;
+      return fileUploadProgress;
+    } else {
+      let fileUploadProgress = new FileUploadProgress();
+      fileUploadProgress.percentDone = 0;
+      return of(fileUploadProgress);
+    }
   }
 }

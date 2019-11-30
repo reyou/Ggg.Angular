@@ -68,15 +68,14 @@ export class UploadService {
       const percentDone = Math.round(
         (100 * httpEvent.loaded) / httpEvent.total
       );
+      fileUploadProgress.progressStatus = this.FileUploadProgressStatusType.Uploading;
       fileUploadProgress.percentDone = percentDone;
-      debugger;
       progressSubject.next(fileUploadProgress);
     } else if (httpEvent instanceof HttpResponse) {
       // Close the progress-stream if we get an answer form the API
       // The upload is complete
-      fileUploadProgress.progressStatus = this.FileUploadProgressStatusType.Uploading;
+      fileUploadProgress.progressStatus = this.FileUploadProgressStatusType.Success;
       fileUploadProgress.percentDone = 100;
-      debugger;
       progressSubject.next(fileUploadProgress);
       progressSubject.complete();
     }

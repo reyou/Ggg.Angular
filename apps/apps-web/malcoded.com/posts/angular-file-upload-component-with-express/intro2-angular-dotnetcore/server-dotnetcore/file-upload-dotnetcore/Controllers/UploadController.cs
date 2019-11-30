@@ -10,12 +10,21 @@ namespace file_upload_dotnetcore.Controllers
     /// <summary>
     /// https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-3.0
     /// https://stackoverflow.com/questions/38144194/iformfile-is-always-empty-in-asp-net-core-webapi
+    /// https://www.talkingdotnet.com/how-to-increase-file-upload-size-asp-net-core/
     /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class UploadController : ControllerBase
     {
+        /// <summary>
+        /// https://stackoverflow.com/questions/28155342/default-limits-limits-for-iis-express
+        /// %userprofile%\my documents\iisexpress\config\applicationhost.config
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost]
+        [RequestSizeLimit(268435456)]
+        [RequestFormLimits(MultipartBodyLengthLimit = 268435456)]
         public async Task<IActionResult> Index(List<IFormFile> file)
         {
             long size = file.Sum(f => f.Length);

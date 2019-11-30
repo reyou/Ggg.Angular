@@ -9,13 +9,39 @@
   Add Files
 </button>
 
-<div *ngFor="let file of files">
-  <div>
-    {{ file.name }} - {{ file.type }} - {{ file.lastModifiedDate }} -
-    {{ file.size }} -
-    {{ progressSet && progressSet[file.name].progress.progressStatus | async }}
-  </div>
-</div>
+<table *ngIf="files.size > 0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Last Modified</th>
+      <th>Size</th>
+      <th>Progress</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let file of files">
+    <td>
+      {{ file.name }}
+    </td>
+    <td>
+      {{ file.type }}
+    </td>
+    <td>
+      {{ file.lastModifiedDate }}
+    </td>
+    <td>
+      {{ formatBytes(file.size) }}
+    </td>
+    <td>
+      {{ (getProgress(file.name) | async)?.percentDone }}
+    </td>
+    <td>
+      {{ (getProgress(file.name) | async)?.getStatusText() }}
+    </td>
+  </tr>
+</table>
+
 <button color="primary" (click)="upload()">
   Upload
 </button>
