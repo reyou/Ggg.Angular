@@ -14,7 +14,8 @@ import { FileUploadError } from "./FileUploadError";
 import { FileUploadProgressStatus } from "./FileUploadProgressStatus";
 
 // const url = "http://localhost:8000/upload";
-const url = "https://localhost:44318/upload";
+// const url = "https://localhost:44318/upload";
+const url = "https://localhost:5001/api/upload";
 
 @Injectable()
 export class UploadService {
