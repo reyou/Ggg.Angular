@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { DiscountService } from "./discount.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { DiscountService } from './discount.service';
 @Component({
-  selector: "paDiscountDisplay",
+  selector: 'paDiscountDisplay',
   template: `
     <div class="bg-info text-white p-2">
       The discount is {{ discounter.discount }}
@@ -9,8 +9,7 @@ import { DiscountService } from "./discount.service";
   `
 })
 export class PaDiscountDisplayComponent implements OnInit {
-  @Input("discounter")
-  discounter: DiscountService;
+  constructor(private discounter: DiscountService) {}
   ngOnInit(): void {
     console.log(
       `PaDiscountDisplayComponent initialized with discounter: ${this.discounter.discount}.`

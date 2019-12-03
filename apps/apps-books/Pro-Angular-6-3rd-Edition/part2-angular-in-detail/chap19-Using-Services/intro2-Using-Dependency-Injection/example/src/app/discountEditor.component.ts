@@ -14,8 +14,7 @@ import { DiscountService } from "./discount.service";
   `
 })
 export class PaDiscountEditorComponent implements OnInit {
-  @Input("discounter")
-  discounter: DiscountService;
+  constructor(private discounter: DiscountService) {}
   ngOnInit(): void {
     console.log(
       `PaDiscountEditorComponent initialized with discounter: ${this.discounter.discount}.`
