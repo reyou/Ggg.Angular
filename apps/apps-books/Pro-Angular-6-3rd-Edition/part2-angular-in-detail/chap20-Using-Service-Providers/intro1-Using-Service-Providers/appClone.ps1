@@ -6,13 +6,12 @@ Write-Output "`n`nCurrent Directory: `n$currentDir`n`n"
 Set-Location $currentDir
 Write-Output "Files in the current directory:"
 Get-ChildItem $currentDir
-# source, destination
-$d = "D:\Git\Ggg.Github\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part2-angular-in-detail\chap19-Using-Services\intro3-Understanding-the-Test-Isolation-Problem";
+
+$destination = "D:\Git\Ggg.Github\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part2-angular-in-detail\chap20-Using-Service-Providers\intro1-Using-Service-Providers";
 
 # Remove-Item $d -Force -Recurse
 Write-Output "Copy Started:"
-Copy-Item $s -Destination $d -Recurse 
+Copy-Item $currentDir -Destination $destination -Recurse 
 Write-Output "Copy Finished."
 # Open destination with VSCode
-code $d
- 
+code $destination
