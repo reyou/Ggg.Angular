@@ -20,6 +20,10 @@ import { PaDiscountAmountDirective } from './discountAmount.directive';
 import { SimpleDataSource } from './datasource.model';
 import { Model } from './repository.model';
 import { LogService, LogLevel, LOG_LEVEL } from './log.service';
+import {
+  VALUE_SERVICE,
+  PaDisplayValueDirective
+} from 'src/valueDisplay.directive';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
@@ -38,30 +42,17 @@ import { LogService, LogLevel, LOG_LEVEL } from './log.service';
     PaDiscountDisplayComponent,
     PaDiscountEditorComponent,
     PaDiscountPipe,
-    PaDiscountAmountDirective
+    PaDiscountAmountDirective,
+    PaDisplayValueDirective
   ],
   providers: [
     DiscountService,
     SimpleDataSource,
     Model,
-    {
-      provide: LOG_LEVEL,
-      useValue: LogLevel.DEBUG
-    },
-    {
-      provide: 'debugLevel',
-      useExisting: LOG_LEVEL
-    },
-    {
-      provide: LogService,
-      deps: ['debugLevel'],
-      useFactory: level => {
-        let logger = new LogService();
-        logger.minimumLevel = level;
-        return logger;
-      }
-    }
+    LogService,
+    { provide: VALUE_SERVICE, useValue: 'Apples' }
   ],
+
   bootstrap: [ProductComponent]
 })
 export class AppModule {}

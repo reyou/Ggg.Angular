@@ -7,7 +7,7 @@ Set-Location $currentDir
 Write-Output "Files in the current directory:"
 Get-ChildItem $currentDir
 
-$destination = "D:\Git\Ggg.Github\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part2-angular-in-detail\chap20-Using-Service-Providers\intro2-Using-Local-Providers";
+$destination = "D:\Git\Ggg.Github\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part2-angular-in-detail\chap21-Using-and-Creating-Modules\intro1-Understanding-the-Root-Module";
 
 # Remove-Item $d -Force -Recurse
 Write-Output "Copy Started:"

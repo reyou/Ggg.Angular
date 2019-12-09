@@ -49,12 +49,8 @@ import { LogService, LogLevel, LOG_LEVEL } from './log.service';
       useValue: LogLevel.DEBUG
     },
     {
-      provide: 'debugLevel',
-      useExisting: LOG_LEVEL
-    },
-    {
       provide: LogService,
-      deps: ['debugLevel'],
+      deps: [LOG_LEVEL],
       useFactory: level => {
         let logger = new LogService();
         logger.minimumLevel = level;
