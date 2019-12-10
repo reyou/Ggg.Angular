@@ -1,58 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ProductComponent } from './component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PaAttrDirective } from './attr.directive';
-import { PaModel } from './twoway.directive';
-import { PaStructureDirective } from './structure.directive';
-import { PaIteratorDirective } from './iterator.directive';
-import { PaCellColor } from './cellColor.directive';
-import { PaCellColorSwitcher } from './cellColorSwitcher.directive';
-import { ProductTableComponent } from './productTable.component';
-import { ProductFormComponent } from './productForm.component';
-import { PaAddTaxPipe } from './addTax.pipe';
-import { PaCategoryFilterPipe } from './categoryFilter.pipe';
-import { PaDiscountDisplayComponent } from './discountDisplay.component';
-import { PaDiscountEditorComponent } from './discountEditor.component';
-import { DiscountService } from './discount.service';
-import { PaDiscountPipe } from './discount.pipe';
-import { PaDiscountAmountDirective } from './discountAmount.directive';
-import { SimpleDataSource } from './datasource.model';
-import { Model } from './repository.model';
-import { LogService, LogLevel, LOG_LEVEL } from './log.service';
-import {
-  VALUE_SERVICE,
-  PaDisplayValueDirective
-} from 'src/valueDisplay.directive';
+import { ProductTableComponent } from './component/productTable.component';
+import { ProductFormComponent } from './component/productForm.component';
+import { CommonModule } from './common/common.module';
+import { ModelModule } from './models/model.module';
+import { ComponentsModule } from './component/components.module';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
-  declarations: [
-    ProductComponent,
-    PaAttrDirective,
-    PaModel,
-    PaStructureDirective,
-    PaIteratorDirective,
-    PaCellColor,
-    PaCellColorSwitcher,
-    ProductTableComponent,
-    ProductFormComponent,
-    PaAddTaxPipe,
-    PaCategoryFilterPipe,
-    PaDiscountDisplayComponent,
-    PaDiscountEditorComponent,
-    PaDiscountPipe,
-    PaDiscountAmountDirective,
-    PaDisplayValueDirective
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ModelModule,
+    CommonModule,
+    ComponentsModule
   ],
-  providers: [
-    DiscountService,
-    SimpleDataSource,
-    Model,
-    LogService,
-    { provide: VALUE_SERVICE, useValue: 'Apples' }
-  ],
-
-  bootstrap: [ProductComponent]
+  bootstrap: [ProductFormComponent, ProductTableComponent]
 })
 export class AppModule {}

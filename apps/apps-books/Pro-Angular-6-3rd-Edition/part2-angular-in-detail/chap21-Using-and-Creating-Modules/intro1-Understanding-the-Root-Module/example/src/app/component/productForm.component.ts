@@ -5,11 +5,11 @@ import {
   Inject,
   SkipSelf
 } from '@angular/core';
-import { Product } from './product.model';
-import { ProductFormGroup } from './form.model';
-import { Intro1Class } from './Intro1Class';
-import { Model } from './repository.model';
-import { VALUE_SERVICE } from 'src/valueDisplay.directive';
+import { Product } from '../models/product.model';
+import { ProductFormGroup } from '../models/form.model';
+
+import { Model } from '../models/repository.model';
+import { VALUE_SERVICE } from 'src/app/common/valueDisplay.directive';
 @Component({
   selector: 'paProductForm',
   templateUrl: 'productForm.component.html',
@@ -22,10 +22,6 @@ export class ProductFormComponent {
   formSubmitted: boolean = false;
   // @Output('paNewProduct')
   // newProductEvent = new EventEmitter<Product>();
-
-  @Output('intro1EventListener')
-  intro1EventListener = new EventEmitter<Intro1Class>();
-  intro1Class: Intro1Class;
 
   constructor(
     private model: Model,
@@ -43,8 +39,5 @@ export class ProductFormComponent {
       this.formSubmitted = false;
     }
   }
-  intro1Click() {
-    this.intro1Class = new Intro1Class();
-    this.intro1EventListener.emit(this.intro1Class);
-  }
+  intro1Click() {}
 }
