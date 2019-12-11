@@ -1,0 +1,2 @@
+The code is a little messy, but the result is that every state change event sent by the table component is displayed by the message component, as shown in Figure 23-7.
+Reactive Extensions makes it easy to wire up parts of the application, and the reason that the code in the listing is so dense is that it is also using the Modelservice to look up names from the data model to make the events easier to read.
