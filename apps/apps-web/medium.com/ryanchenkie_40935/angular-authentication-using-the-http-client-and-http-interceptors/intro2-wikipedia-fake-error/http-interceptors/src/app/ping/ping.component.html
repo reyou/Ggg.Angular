@@ -1,0 +1,4 @@
+<input type="text" [(ngModel)]="keyword" />
+<input type="button" [disabled]="isDisabled()" (click)="ping()" value="Search Wikipedia" />
+<div *ngFor="let item of searchResults">{{ item.pageid }} - {{ item.title }}</div>
+<div>{{ error | json }}</div>
