@@ -1,0 +1,66 @@
+<div>
+  <h2>Modal with default options</h2>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delete Item</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete item?</p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-primary mr-2"
+        (click)="modal.close('Save click')"
+      >
+        OK
+      </button>
+      <button
+        type="button"
+        class="btn btn-dark mr-2"
+        (click)="modal.dismiss('Cancel click')"
+      >
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">
+    Delete
+  </button>
+
+  <hr />
+
+  <pre>{{ closeResult }}</pre>
+</div>
+
+<div>
+  <h2>Basic Alert</h2>
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>Warning!</strong> Better check yourself, you're not looking too
+      good.
+    </ngb-alert>
+  </p>
+</div>
+<div>
+  <h2>Closable Alert</h2>
+  <p *ngFor="let alert of alerts">
+    <ngb-alert [type]="alert.type" (close)="close(alert)">{{
+      alert.message
+    }}</ngb-alert>
+  </p>
+  <p>
+    <button type="button" class="btn btn-primary" (click)="reset()">
+      Reset
+    </button>
+  </p>
+</div>
