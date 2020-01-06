@@ -46,6 +46,7 @@ const ALERTS: Alert[] = [
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+  collapsed = true;
   closeResult: string;
   alerts: Alert[];
   title = "ng-bootstrap-example";
