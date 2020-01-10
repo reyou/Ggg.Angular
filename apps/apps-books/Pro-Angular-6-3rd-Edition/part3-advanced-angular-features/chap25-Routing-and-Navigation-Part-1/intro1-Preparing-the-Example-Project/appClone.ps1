@@ -7,7 +7,7 @@ Set-Location $currentDir
 Write-Output "Files in the current directory:"
 Get-ChildItem $currentDir
 
-$destination = "C:\Ggg\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part3-advanced-angular-features\chap25-Routing-and-Navigation-Part-1\intro1-Preparing-the-Example-Project";
+$destination = "D:\Ggg\Ggg.Angular\apps\apps-books\Pro-Angular-6-3rd-Edition\part3-advanced-angular-features\chap25-Routing-and-Navigation-Part-1\intro1-Preparing-the-Example-Project";
 
 # Remove-Item $d -Force -Recurse
 Write-Output "Copy started to destination:"
