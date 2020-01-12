@@ -11,11 +11,21 @@ import { MessageModule } from '../messages/message.module';
 import { MessageService } from '../messages/message.service';
 import { Message } from '../messages/message.model';
 import { Model } from '../model/repository.model';
+import { ProductCountComponent } from './productCount.component';
+import { CategoryCountComponent } from './categoryCount.component';
+import { NotFoundComponent } from './notFound.component';
 
 import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [BrowserModule, FormsModule, ModelModule, MessageModule, RouterModule],
-  declarations: [TableComponent, FormComponent, StatePipe],
+  declarations: [
+    TableComponent,
+    FormComponent,
+    StatePipe,
+    ProductCountComponent,
+    CategoryCountComponent,
+    NotFoundComponent
+  ],
   exports: [ModelModule, TableComponent, FormComponent]
 })
 export class CoreModule {}
