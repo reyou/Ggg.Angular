@@ -12,6 +12,8 @@ import { CategoryCountComponent } from './categoryCount.component';
 import { NotFoundComponent } from './notFound.component';
 
 import { RouterModule } from '@angular/router';
+import { UnsavedGuard } from './unsaved.guard';
+
 @NgModule({
   imports: [BrowserModule, FormsModule, ModelModule, MessageModule, RouterModule],
   declarations: [
@@ -22,6 +24,7 @@ import { RouterModule } from '@angular/router';
     CategoryCountComponent,
     NotFoundComponent
   ],
+  providers: [UnsavedGuard],
   exports: [ModelModule, TableComponent, FormComponent]
 })
 export class CoreModule {}
