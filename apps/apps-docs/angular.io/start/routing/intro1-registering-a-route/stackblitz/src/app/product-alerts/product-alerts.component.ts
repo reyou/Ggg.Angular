@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Input } from "@angular/core";
 import { Output, EventEmitter } from "@angular/core";
 
@@ -18,6 +18,8 @@ export class ProductAlertsComponent implements OnInit {
   supplies configuration metadata. The DOM property bound to the output property 
   is automatically updated during change detection. */
   /* This allows the product alert component to emit an event when the value of the notify property changes. */
+  /* (alias) new EventEmitter<any>(isAsync?: boolean): EventEmitter<any>
+import EventEmitter Creates an instance of this class that can deliver events synchronously or asynchronously. */
   @Output() notify = new EventEmitter();
   constructor() {}
 
