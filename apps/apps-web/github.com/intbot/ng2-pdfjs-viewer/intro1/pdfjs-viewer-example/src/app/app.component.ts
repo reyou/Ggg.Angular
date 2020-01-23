@@ -36,6 +36,7 @@ export class AppComponent {
   getPdfViewerApplication() {
     return this.pdfViewer.PDFViewerApplication;
   }
+ 
   public async next() {
     let pdfApp = this.getPdfViewerApplication();
     let pagesCount = pdfApp.pagesCount;

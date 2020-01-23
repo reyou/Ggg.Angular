@@ -1,0 +1,16 @@
+<!-- You can now use your library component in app.component.html -->
+<h1>
+  {{ title }}
+</h1>
+<p>
+  <a href="https://github.com/intbot/ng2-pdfjs-viewer#readme">Docs</a>
+</p>
+<div>
+  <input type="button" value="text" (click)="text()" />
+  <input type="button" value="prev" (click)="prev()" />
+  <input type="button" value="next" (click)="next()" />
+</div>
+
+<div class="pdfContainer">
+  <ng2-pdfjs-viewer #pdfViewer></ng2-pdfjs-viewer>
+</div>
