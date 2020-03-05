@@ -1,8 +1,8 @@
-import { Component, OnInit, Self, SkipSelf } from '@angular/core';
-import { BROWSER_STORAGE, BrowserStorageService } from './storage.service';
+import { Component, OnInit, Self, SkipSelf } from "@angular/core";
+import { BROWSER_STORAGE, BrowserStorageService } from "./storage.service";
 
 @Component({
-  selector: 'app-storage',
+  selector: "app-storage",
   template: `
     Open the inspector to see the local/session storage keys:
 
@@ -18,20 +18,18 @@ import { BROWSER_STORAGE, BrowserStorageService } from './storage.service';
   ]
 })
 export class StorageComponent implements OnInit {
-
   constructor(
     @Self() private sessionStorageService: BrowserStorageService,
-    @SkipSelf() private localStorageService: BrowserStorageService,
-  ) { }
+    @SkipSelf() private localStorageService: BrowserStorageService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   setSession() {
-    this.sessionStorageService.set('hero', 'Dr Nice - Session');
+    this.sessionStorageService.set("hero", "Dr Nice - Session");
   }
 
   setLocal() {
-    this.localStorageService.set('hero', 'Dr Nice - Local');
+    this.localStorageService.set("hero", "Dr Nice - Local");
   }
 }
