@@ -1,0 +1,13 @@
+<div style="border: 1px solid #333; padding: 10px;">
+  <input
+    class="form-control"
+    (keyup)="searchTerm$.next($event.target.value)"
+    placeholder="searchTerm$"
+  />
+
+  <input
+    class="form-control"
+    (keyup)="searchTermError$.next($event.target.value)"
+    placeholder="searchTermError$"
+  />
+</div>
