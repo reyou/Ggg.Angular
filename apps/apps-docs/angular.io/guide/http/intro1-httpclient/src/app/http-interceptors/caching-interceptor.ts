@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
-  HttpEvent, HttpHeaders, HttpRequest, HttpResponse,
-  HttpInterceptor, HttpHandler
-} from '@angular/common/http';
+  HttpEvent,
+  HttpHeaders,
+  HttpRequest,
+  HttpResponse,
+  HttpInterceptor,
+  HttpHandler
+} from "@angular/common/http";
 
-import { Observable, of } from 'rxjs';
-import { startWith, tap } from 'rxjs/operators';
+import { Observable, of } from "rxjs";
+import { startWith, tap } from "rxjs/operators";
 
-import { RequestCache } from '../request-cache.service';
-import { searchUrl } from '../package-search/package-search.service';
-
+import { RequestCache } from "../request-cache.service";
+import { searchUrl } from "../package-search/package-search.service";
 
 /**
  * If request is cachable (e.g., package search) and
@@ -27,29 +30,33 @@ export class CachingInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // continue if not cachable.
-    if (!isCachable(req)) { return next.handle(req); }
+    if (!isCachable(req)) {
+      return next.handle(req);
+    }
 
     const cachedResponse = this.cache.get(req);
     // cache-then-refresh
-    if (req.headers.get('x-refresh')) {
+    if (req.headers.get("x-refresh")) {
       const results$ = sendRequest(req, next, this.cache);
-      return cachedResponse ?
-        results$.pipe( startWith(cachedResponse) ) :
-        results$;
+      return cachedResponse
+        ? results$.pipe(startWith(cachedResponse))
+        : results$;
     }
     // cache-or-fetch
-    return cachedResponse ?
-      of(cachedResponse) : sendRequest(req, next, this.cache);
+    return cachedResponse
+      ? of(cachedResponse)
+      : sendRequest(req, next, this.cache);
   }
 }
-
 
 /** Is this request cachable? */
 function isCachable(req: HttpRequest<any>) {
   // Only GET requests are cachable
-  return req.method === 'GET' &&
+  return (
+    req.method === "GET" &&
     // Only npm package search is cachable in this app
-    -1 < req.url.indexOf(searchUrl);
+    -1 < req.url.indexOf(searchUrl)
+  );
 }
 
 /**
@@ -59,8 +66,8 @@ function isCachable(req: HttpRequest<any>) {
 function sendRequest(
   req: HttpRequest<any>,
   next: HttpHandler,
-  cache: RequestCache): Observable<HttpEvent<any>> {
-
+  cache: RequestCache
+): Observable<HttpEvent<any>> {
   // No headers allowed in npm search request
   const noHeaderReq = req.clone({ headers: new HttpHeaders() });
 
@@ -73,4 +80,3 @@ function sendRequest(
     })
   );
 }
-

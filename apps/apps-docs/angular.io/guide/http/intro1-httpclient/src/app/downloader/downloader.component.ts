@@ -15,7 +15,13 @@ export class DownloaderComponent {
   }
 
   download() {
-    this.downloaderService.getTextFile("assets/textfile.txt").subscribe({
+    let obs$ = this.downloaderService.getTextFile("assets/textfile.txt");
+    obs$.subscribe({
+      next: results => {
+        this.contents = results;
+      }
+    });
+    obs$.subscribe({
       next: results => {
         this.contents = results;
       }
