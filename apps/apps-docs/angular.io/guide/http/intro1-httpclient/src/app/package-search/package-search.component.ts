@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Observable, Subject } from "rxjs";
+import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
 
-import { NpmPackageInfo, PackageSearchService } from './package-search.service';
+import { NpmPackageInfo, PackageSearchService } from "./package-search.service";
 
 @Component({
-  selector: 'app-package-search',
-  templateUrl: './package-search.component.html',
-  providers: [ PackageSearchService ]
+  selector: "app-package-search",
+  templateUrl: "./package-search.component.html",
+  providers: [PackageSearchService]
 })
 export class PackageSearchComponent implements OnInit {
   withRefresh = false;
@@ -24,13 +24,14 @@ export class PackageSearchComponent implements OnInit {
       debounceTime(500),
       distinctUntilChanged(),
       switchMap(packageName =>
-        this.searchService.search(packageName, this.withRefresh))
+        this.searchService.search(packageName, this.withRefresh)
+      )
     );
   }
 
-  constructor(private searchService: PackageSearchService) { }
+  constructor(private searchService: PackageSearchService) {}
 
-
-  toggleRefresh() { this.withRefresh = ! this.withRefresh; }
-
+  toggleRefresh() {
+    this.withRefresh = !this.withRefresh;
+  }
 }

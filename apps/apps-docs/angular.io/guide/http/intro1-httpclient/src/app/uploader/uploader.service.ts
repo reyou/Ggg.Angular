@@ -1,19 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
-  HttpClient, HttpEvent, HttpEventType, HttpProgressEvent,
-  HttpRequest, HttpResponse, HttpErrorResponse
-} from '@angular/common/http';
+  HttpClient,
+  HttpEvent,
+  HttpEventType,
+  HttpProgressEvent,
+  HttpRequest,
+  HttpResponse,
+  HttpErrorResponse
+} from "@angular/common/http";
 
-import { of } from 'rxjs';
-import { catchError, last, map, tap } from 'rxjs/operators';
+import { of } from "rxjs";
+import { catchError, last, map, tap } from "rxjs/operators";
 
-import { MessageService } from '../message.service';
+import { MessageService } from "../message.service";
 
 @Injectable()
 export class UploaderService {
-  constructor(
-    private http: HttpClient,
-    private messenger: MessageService) {}
+  constructor(private http: HttpClient, private messenger: MessageService) {}
 
   // If uploading multiple files, change to:
   // upload(files: FileList) {
@@ -24,7 +27,9 @@ export class UploaderService {
   // }
 
   upload(file: File) {
-    if (!file) { return; }
+    if (!file) {
+      return;
+    }
 
     // COULD HAVE WRITTEN:
     // return this.http.post('/upload/file', file, {
@@ -35,7 +40,7 @@ export class UploaderService {
     // Create the request object that POSTs the file to an upload endpoint.
     // The `reportProgress` option tells HttpClient to listen and return
     // XHR progress events.
-    const req = new HttpRequest('POST', '/upload/file', file, {
+    const req = new HttpRequest("POST", "/upload/file", file, {
       reportProgress: true
     });
 
@@ -57,7 +62,7 @@ export class UploaderService {
 
       case HttpEventType.UploadProgress:
         // Compute and show the % done:
-        const percentDone = Math.round(100 * event.loaded / event.total);
+        const percentDone = Math.round((100 * event.loaded) / event.total);
         return `File "${file.name}" is ${percentDone}% uploaded.`;
 
       case HttpEventType.Response:
@@ -82,9 +87,10 @@ export class UploaderService {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      const message = (error.error instanceof Error) ?
-        error.error.message :
-       `server returned code ${error.status} with body "${error.error}"`;
+      const message =
+        error.error instanceof Error
+          ? error.error.message
+          : `server returned code ${error.status} with body "${error.error}"`;
 
       this.messenger.add(`${userMessage} ${message}`);
 
