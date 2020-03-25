@@ -32,7 +32,7 @@
     },
     {
       "type": "npm",
-      "script": "start",
+      "script": "test",
       "isBackground": true,
       "presentation": {
         "focus": true,

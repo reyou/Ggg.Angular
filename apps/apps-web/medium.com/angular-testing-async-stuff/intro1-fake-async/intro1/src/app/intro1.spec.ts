@@ -12,6 +12,7 @@ describe("Testing async stuff in the fakedAsync zone", () => {
     }, 10000);
     tick(16 * 1000);
   }));
+
   it("drains the zone task by task 2", fakeAsync(() => {
     setTimeout(() => {
       let i = 0;
