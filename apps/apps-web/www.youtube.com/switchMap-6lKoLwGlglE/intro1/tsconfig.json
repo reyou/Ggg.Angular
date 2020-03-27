@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "lib": ["es2015", "dom"],
+    "typeRoots": ["node_modules/@types"],
+    "rootDir": "./src",
+    "watch": false,
+    "downlevelIteration": true,
+    "inlineSourceMap": true,
+    "strict": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

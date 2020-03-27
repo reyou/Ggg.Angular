@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Build",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "npm: build",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Launch Program",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "debugApp",
+      "skipFiles": ["<node_internals>/**"],
+      "webRoot": "${workspaceRoot}",
+      "url": "http://localhost:5000"
+    }
+  ]
+}
