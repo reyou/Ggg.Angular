@@ -15,21 +15,7 @@ class HomeController implements IControllerBase {
   }
 
   index = (req: Request, res: Response) => {
-    const users = [
-      {
-        id: 1,
-        name: 'Ali'
-      },
-      {
-        id: 2,
-        name: 'Can'
-      },
-      {
-        id: 3,
-        name: 'Ahmet'
-      }
-    ];
-    res.sendFile('src/views/home' + '/index.html');
+    res.sendFile('index.html', { root: './src/views/home' });
     // res.render('home/index', { users });
   };
 }

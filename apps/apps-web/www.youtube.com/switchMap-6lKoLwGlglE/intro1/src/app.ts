@@ -32,8 +32,8 @@ class App {
   }
 
   private assets() {
-    this.app.use(express.static('public'));
-    this.app.use(express.static(__dirname + '/views'));
+    this.app.use(express.static('./src/public'));
+    this.app.use(express.static('./src/views'));
   }
 
   private template() {

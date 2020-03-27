@@ -1,2 +1,4 @@
+# package.json
+remove-item -recurse ./dist
 npm run build
-npm run dev
+npm run start
