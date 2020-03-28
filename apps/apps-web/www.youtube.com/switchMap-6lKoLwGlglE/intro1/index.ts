@@ -1,15 +1,13 @@
-import { fromEvent, interval } from 'rxjs';
+import { interval, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-let button: HTMLElement = <HTMLElement>document.getElementById('button');
-
-let obsClick = fromEvent(button, 'click');
+let obsClick = of([1, 2, 3]);
 let obsInterval = interval(1000);
 
 obsClick
   .pipe(
-    switchMap((event: Event) => {
-      console.log('Event Started:', event);
+    switchMap((number: number[]) => {
+      console.log('Event Started:', number);
       return obsInterval;
     })
   )
