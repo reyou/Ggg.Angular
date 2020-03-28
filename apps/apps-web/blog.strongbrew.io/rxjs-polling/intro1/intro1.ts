@@ -9,26 +9,21 @@ const bitcoin$: Observable<AxiosResponse<any>> = from(
 );
 const trigger$: Observable<number> = timer(0, 1000);
 
-let polledBitcoin$ = trigger$
-  .pipe(
-    concatMap((number: number, index: number) => {
-      console.log({
-        item: 'concatMap',
-        number,
-        index
-      });
-      return bitcoin$;
-    }),
-    map((response: AxiosResponse<any>) => {
-      return response.data;
-    })
-    // map((response: { EUR: { last: number } }) => response.EUR.last)
-  )
-  .subscribe({
-    next: (data: any) => {
-      console.log({
-        item: 'subscribe',
-        data
-      });
-    }
-  });
+let polledBitcoin$ = trigger$.pipe(
+  concatMap((number: number, index: number) => {
+    console.log({
+      item: 'concatMap',
+      number,
+      index
+    });
+    return bitcoin$;
+  }),
+  map((response: AxiosResponse<any>) => {
+    return response.data;
+  })
+);
+polledBitcoin$.subscribe({
+  next: (data: any) => {
+    console.log(data.USD);
+  }
+});
