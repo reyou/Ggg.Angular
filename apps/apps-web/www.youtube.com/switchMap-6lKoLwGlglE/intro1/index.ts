@@ -1,22 +1,25 @@
 import { interval, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map, tap } from 'rxjs/operators';
 
-let obsClick = of([1, 2, 3]);
-let obsInterval = interval(1000);
+let obs1 = of(1);
+let obs2 = interval(2000);
 
-obsClick
+obs1
   .pipe(
-    switchMap((number: number[]) => {
+    switchMap((number: number) => {
       console.log('Event Started:', number);
-      return obsInterval;
+      return obs2.pipe(map(num2 => num2 * num2));
+    }),
+    tap((logNumber: number) => {
+      console.log('Log Number:', logNumber);
     })
   )
   .subscribe({
     next: value => {
-      console.log(value);
+      console.log('value:', value);
     },
     error: err => {
-      console.error(err);
+      console.error('err:', err);
     },
     complete: () => {
       console.warn('completed!');
