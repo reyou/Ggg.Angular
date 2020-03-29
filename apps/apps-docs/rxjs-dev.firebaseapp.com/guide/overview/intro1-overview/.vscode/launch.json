@@ -12,8 +12,16 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
+      "name": "Webpack Dev Server (Build and Run)",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "npm: webpack-dev-server",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
       "type": "chrome",
       "request": "launch",
+      "preLaunchTask": "startApp",
       "name": "Launch Chrome against localhost",
       "url": "http://localhost:8080",
       "webRoot": "${workspaceFolder}"
