@@ -1,11 +1,11 @@
 import { fromEvent } from "rxjs";
 import Intro2Purity from "./intro2-Purity";
+import Intro1 from "./intro1-click";
 
-export default class Intro1 {
+export default class Index {
   constructor() {
-    let intro2 = new Intro2Purity();
-    intro2.run();
+    // new Intro1().run();
+    new Intro2Purity().run();
   }
 }
-
-new Intro1();
+new Index();
