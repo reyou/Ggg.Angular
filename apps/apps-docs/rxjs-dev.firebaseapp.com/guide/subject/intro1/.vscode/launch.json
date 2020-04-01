@@ -1,0 +1,47 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug TypeScript File",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "program": "${file}",
+      "outFiles": ["${workspaceFolder}/**/*.js"],
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Webpack Build",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "npm: webpack",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Webpack Dev Server (Build and Run)",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "npm: webpack-dev-server",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "startApp",
+      "name": "Debug with Chrome against localhost",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: webpack",
+      "name": "Debug with Chrome against browser path (dist/index.html)",
+      "url": "${workspaceFolder}/dist/index.html",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}
