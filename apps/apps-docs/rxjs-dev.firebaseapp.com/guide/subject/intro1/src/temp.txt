@@ -1,10 +1,19 @@
-import { fromEvent } from 'rxjs';
-import { throttleTime, map, scan } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
-fromEvent(document, 'click')
-  .pipe(
-    throttleTime(1000),
-    map(event => event.clientX),
-    scan((count, clientX) => count + clientX, 0)
-  )
-  .subscribe(count => console.log(count));
+const subject = new Subject<number>();
+
+subject.subscribe({
+  next: (v) => console.log(`observerA: ${v}`)
+});
+subject.subscribe({
+  next: (v) => console.log(`observerB: ${v}`)
+});
+
+subject.next(1);
+subject.next(2);
+
+// Logs:
+// observerA: 1
+// observerB: 1
+// observerA: 2
+// observerB: 2

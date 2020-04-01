@@ -1,10 +1,10 @@
-import Intro1Map from './intro1-map';
-import Intro2First from './intro2-first';
+import Intro1Subject from './intro1-subject';
+import Intro2SubjectIsAnObserver from './intro2-Subject-is-an-Observer';
 
 export default class Index {
   constructor() {
-    new Intro1Map().run();
-    new Intro2First().run();
+    new Intro1Subject();
+    new Intro2SubjectIsAnObserver().run();
   }
 }
 new Index();
