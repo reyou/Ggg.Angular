@@ -9,7 +9,7 @@ import {
   Subscription,
 } from "rxjs";
 import { multicast } from "rxjs/operators";
-export default class Intro4ReferenceCounting {
+export default class Intro4WithoutReferenceCounting {
   public run() {
     const source: Observable<number> = interval(500);
     const subject = new Subject();
