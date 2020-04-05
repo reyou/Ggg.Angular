@@ -5,6 +5,7 @@ import Intro4WithoutReferenceCounting from "./intro4-without-Reference-counting"
 import Intro5ReferenceCounting from "./intro5-Reference-counting";
 import Intro6BehaviorSubject from "./intro6-BehaviorSubject";
 import Intro7ReplaySubject from "./intro7-ReplaySubject";
+import Intro8AsyncSubject from "./intro8-AsyncSubject";
 
 export default class Index {
   constructor() {
@@ -14,7 +15,8 @@ export default class Index {
     new Intro4WithoutReferenceCounting();
     new Intro5ReferenceCounting();
     new Intro6BehaviorSubject();
-    new Intro7ReplaySubject().run();
+    new Intro7ReplaySubject();
+    new Intro8AsyncSubject().run();
   }
 }
 new Index();
