@@ -1,19 +1,17 @@
-import { Subject } from 'rxjs';
-
-const subject = new Subject<number>();
-
-subject.subscribe({
+import { from, Subject } from 'rxjs';
+import { multicast } from 'rxjs/operators';
+ 
+const source = from([1, 2, 3]);
+const subject = new Subject();
+const multicasted = source.pipe(multicast(subject));
+ 
+// These are, under the hood, `subject.subscribe({...})`:
+multicasted.subscribe({
   next: (v) => console.log(`observerA: ${v}`)
 });
-subject.subscribe({
+multicasted.subscribe({
   next: (v) => console.log(`observerB: ${v}`)
 });
-
-subject.next(1);
-subject.next(2);
-
-// Logs:
-// observerA: 1
-// observerB: 1
-// observerA: 2
-// observerB: 2
+ 
+// This is, under the hood, `source.subscribe(subject)`:
+multicasted.connect();
