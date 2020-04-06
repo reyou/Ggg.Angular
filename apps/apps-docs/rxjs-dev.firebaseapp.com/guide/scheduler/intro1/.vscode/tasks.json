@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "startApp",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": [".\\tasks\\startApp.ps1"],
+      "isBackground": true,
+      "problemMatcher": {
+        "fileLocation": ["relative", "${cwd}"],
+        "pattern": [
+          {
+            "regexp": ".",
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Starting debugger session:",
+          "endsPattern": "."
+        }
+      }
+    }
+  ]
+}
