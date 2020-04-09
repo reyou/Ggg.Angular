@@ -7,7 +7,7 @@ import { HEROES } from "./mock-heroes";
 import { MessageService } from "../message.service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class HeroService {
   constructor(private messageService: MessageService) {}
@@ -16,6 +16,9 @@ export class HeroService {
     // TODO: send the message _after_ fetching the heroes
     this.messageService.add("HeroService: fetched heroes");
     return of(HEROES);
+  }
+  getHero(arg0: string): any {
+    throw new Error("Method not implemented.");
   }
 }
 
