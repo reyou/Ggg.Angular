@@ -17,8 +17,9 @@ export class HeroService {
     this.messageService.add("HeroService: fetched heroes");
     return of(HEROES);
   }
-  getHero(arg0: string): any {
-    throw new Error("Method not implemented.");
+  getHero(id: number): Observable<Hero> {
+    let hero = HEROES.filter((q) => q.id === id)[0];
+    return of(hero);
   }
 }
 
