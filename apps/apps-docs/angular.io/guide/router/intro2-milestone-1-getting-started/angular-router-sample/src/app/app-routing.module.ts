@@ -1,12 +1,24 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { CrisisListComponent } from "./crisis-list/crisis-list.component";
-// import { HeroListComponent }  from './hero-list/hero-list.component';  // <-- delete this line
+import { ComposeMessageComponent } from "./compose-message/compose-message.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+
+import { AuthGuard } from "./auth/auth.guard";
 import { SelectivePreloadingStrategyService } from "./selective-preloading-strategy.service";
 
 const appRoutes: Routes = [
+  {
+    path: "compose",
+    component: ComposeMessageComponent,
+    outlet: "popup",
+  },
+  {
+    path: "admin",
+    loadChildren: () =>
+      import("./admin/admin.module").then((m) => m.AdminModule),
+    canLoad: [AuthGuard],
+  },
   {
     path: "crisis-center",
     loadChildren: () =>
@@ -15,8 +27,7 @@ const appRoutes: Routes = [
       ),
     data: { preload: true },
   },
-  // { path: 'heroes',     component: HeroListComponent }, // <-- delete this line
-  { path: "", redirectTo: "/heroes", pathMatch: "full" },
+  { path: "", redirectTo: "/superheroes", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent },
 ];
 
