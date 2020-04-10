@@ -1,47 +1,43 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { CrisisCenterHomeComponent } from './crisis-center-home/crisis-center-home.component';
-import { CrisisListComponent }       from './crisis-list/crisis-list.component';
-import { CrisisCenterComponent }     from './crisis-center/crisis-center.component';
-import { CrisisDetailComponent }     from './crisis-detail/crisis-detail.component';
+import { CrisisCenterHomeComponent } from "./crisis-center-home/crisis-center-home.component";
+import { CrisisListComponent } from "./crisis-list/crisis-list.component";
+import { CrisisCenterComponent } from "./crisis-center/crisis-center.component";
+import { CrisisDetailComponent } from "./crisis-detail/crisis-detail.component";
 
-import { CanDeactivateGuard }             from '../can-deactivate.guard';
-import { CrisisDetailResolverService }    from './crisis-detail-resolver.service';
+import { CanDeactivateGuard } from "../can-deactivate.guard";
+import { CrisisDetailResolverService } from "./crisis-detail-resolver.service";
 
 const crisisCenterRoutes: Routes = [
   {
-    path: '',
+    path: "",
     component: CrisisCenterComponent,
     children: [
       {
-        path: '',
+        path: "",
         component: CrisisListComponent,
         children: [
           {
-            path: ':id',
+            path: ":id",
             component: CrisisDetailComponent,
             canDeactivate: [CanDeactivateGuard],
             resolve: {
-              crisis: CrisisDetailResolverService
-            }
+              crisis: CrisisDetailResolverService,
+            },
           },
           {
-            path: '',
-            component: CrisisCenterHomeComponent
-          }
-        ]
-      }
-    ]
-  }
+            path: "",
+            component: CrisisCenterHomeComponent,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(crisisCenterRoutes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forChild(crisisCenterRoutes)],
+  exports: [RouterModule],
 })
-export class CrisisCenterRoutingModule { }
+export class CrisisCenterRoutingModule {}
