@@ -1,7 +1,7 @@
 // Http testing module and mocking controller
 import {
   HttpClientTestingModule,
-  HttpTestingController
+  HttpTestingController,
 } from "@angular/common/http/testing";
 
 // Other imports
@@ -22,12 +22,12 @@ describe("HttpClient testing", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
     });
 
     // Inject the http service and test controller for each test
-    httpClient = TestBed.inject(HttpClient);
-    httpTestingController = TestBed.inject(HttpTestingController);
+    httpClient = TestBed.get(HttpClient);
+    httpTestingController = TestBed.get(HttpTestingController);
   });
   afterEach(() => {
     // After every test, assert that there are no more pending requests.
@@ -38,7 +38,7 @@ describe("HttpClient testing", () => {
     const testData: Data = { name: "Test Data" };
 
     // Make an HTTP GET request
-    httpClient.get<Data>(testUrl).subscribe(data =>
+    httpClient.get<Data>(testUrl).subscribe((data) =>
       // When observable resolves, result should match test data
       expect(data).toEqual(testData)
     );
@@ -65,13 +65,13 @@ describe("HttpClient testing", () => {
     // Make an HTTP GET request with specific header
     httpClient
       .get<Data>(testUrl, {
-        headers: new HttpHeaders({ Authorization: "my-auth-token" })
+        headers: new HttpHeaders({ Authorization: "my-auth-token" }),
       })
-      .subscribe(data => expect(data).toEqual(testData));
+      .subscribe((data) => expect(data).toEqual(testData));
 
     // Find request with a predicate function.
     // Expect one request with an authorization header
-    const req = httpTestingController.expectOne(req =>
+    const req = httpTestingController.expectOne((req) =>
       req.headers.has("Authorization")
     );
     req.flush(testData);
@@ -82,23 +82,23 @@ describe("HttpClient testing", () => {
       { name: "bob" },
       { name: "carol" },
       { name: "ted" },
-      { name: "alice" }
+      { name: "alice" },
     ];
 
     // Make three requests in a row
     httpClient
       .get<Data[]>(testUrl)
-      .subscribe(d => expect(d.length).toEqual(0, "should have no data"));
+      .subscribe((d) => expect(d.length).toEqual(0, "should have no data"));
 
     httpClient
       .get<Data[]>(testUrl)
-      .subscribe(d =>
+      .subscribe((d) =>
         expect(d).toEqual([testData[0]], "should be one element array")
       );
 
     httpClient
       .get<Data[]>(testUrl)
-      .subscribe(d => expect(d).toEqual(testData, "should be expected data"));
+      .subscribe((d) => expect(d).toEqual(testData, "should be expected data"));
 
     // get all pending requests that match the given URL
     const requests = httpTestingController.match(testUrl);
@@ -114,7 +114,7 @@ describe("HttpClient testing", () => {
     const emsg = "deliberate 404 error";
 
     httpClient.get<Data[]>(testUrl).subscribe(
-      data => fail("should have failed with the 404 error"),
+      (data) => fail("should have failed with the 404 error"),
       (error: HttpErrorResponse) => {
         expect(error.status).toEqual(404, "status");
         expect(error.error).toEqual(emsg, "message");
@@ -131,7 +131,7 @@ describe("HttpClient testing", () => {
     const emsg = "simulated network error";
 
     httpClient.get<Data[]>(testUrl).subscribe(
-      data => fail("should have failed with the network error"),
+      (data) => fail("should have failed with the network error"),
       (error: HttpErrorResponse) => {
         expect(error.error.message).toEqual(emsg, "message");
       }
@@ -147,7 +147,7 @@ describe("HttpClient testing", () => {
       // Just showing that you could provide this too.
       filename: "HeroService.ts",
       lineno: 42,
-      colno: 21
+      colno: 21,
     });
 
     // Respond with mock error
