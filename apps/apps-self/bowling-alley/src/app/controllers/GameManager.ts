@@ -6,9 +6,9 @@ export default class GameManager {
   static frames: Frame[];
   static currentFrame: Frame;
   static generateRollButtons(): RollButton[] {
-    let rolls = [];
+    const rolls = [];
     for (let i = 0; i < 11; i++) {
-      let rollButton = new RollButton();
+      const rollButton = new RollButton();
       rollButton.number = i;
       if (this.currentFrame) {
         if (this.currentFrame.rowNumber < 10) {
@@ -67,5 +67,14 @@ export default class GameManager {
     frame = this.frames.find((q) => !q.completed);
     this.currentFrame = frame;
     return frame;
+  }
+
+  // tslint:disable-next-line: typedef
+  static isGameEnds() {
+    const frame = this.frames.find((q) => !q.completed);
+    if (frame) {
+      return false;
+    }
+    return true;
   }
 }

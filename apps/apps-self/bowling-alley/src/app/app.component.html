@@ -1,58 +1,65 @@
 <h1>Bowling Alley</h1>
-<table class="table table-bordered">
-  <th>Frame</th>
-  <th>Roll</th>
-  <th>Score</th>
-  <th>Completed</th>
-  <th>Spare</th>
-  <th>Strike</th>
-  <!-- <th>JSON</th> -->
-  <ng-container *ngFor="let frame of frames; let i = index">
-    <tr class="{{ getCurrentFrameClass(i) }}">
-      <td>
-        {{ frame.rowNumber }}
-      </td>
-      <td>
-        <ul *ngFor="let roll of frame.getRolls()">
-          <li>{{ roll }}</li>
-        </ul>
-      </td>
-      <td>
-        {{ frame.score }}
-      </td>
-      <td>
-        {{ frame.completed }}
-      </td>
-      <td>
-        {{ frame.isSpare() }}
-      </td>
-      <td>
-        {{ frame.isStrike() }}
-      </td>
-      <!-- <td>
-        {{ frame | json }}
-      </td> -->
-    </tr>
-  </ng-container>
-</table>
-<table class="table table-bordered">
-  <tr>
-    <td>Total:</td>
-    <td>
-      {{ totalScore }}
-    </td>
-  </tr>
-</table>
-<p>
-  <span *ngFor="let roll of rolls">
-    <button
-      type="button"
-      class="btn btn-primary ml-2"
-      style="width: 100px"
-      (click)="rollTheBall(roll.number)"
-      [disabled]="roll.disabled"
-    >
-      {{ roll.number }}
-    </button>
-  </span>
-</p>
+<h2>Game Status: {{ gameStatus }}</h2>
+<div class="row">
+  <div class="col-2">
+    <p>
+      <span *ngFor="let roll of rolls">
+        <button
+          type="button"
+          class="btn btn-primary ml-2 mb-2"
+          style="width: 100px"
+          (click)="rollTheBall(roll.number)"
+          [disabled]="roll.disabled"
+        >
+          {{ roll.number }}
+        </button>
+      </span>
+    </p>
+  </div>
+  <div class="col">
+    <table class="table table-bordered">
+      <tr>
+        <td>Total:</td>
+        <td>
+          {{ totalScore }}
+        </td>
+      </tr>
+    </table>
+    <table class="table table-bordered">
+      <th>Frame</th>
+      <th>Roll</th>
+      <th>Score</th>
+      <th>Completed</th>
+      <th>Spare</th>
+      <th>Strike</th>
+      <!-- <th>JSON</th> -->
+      <ng-container *ngFor="let frame of frames; let i = index">
+        <tr class="{{ getCurrentFrameClass(i) }}">
+          <td>
+            {{ frame.rowNumber }}
+          </td>
+          <td>
+            <ul *ngFor="let roll of frame.getRolls()">
+              <li>{{ roll }}</li>
+            </ul>
+          </td>
+          <td>
+            {{ frame.score }}
+          </td>
+          <td>
+            {{ frame.completed }}
+          </td>
+          <td>
+            {{ frame.isSpare() }}
+          </td>
+          <td>
+            {{ frame.isStrike() }}
+          </td>
+          <!-- <td>
+            {{ frame | json }}
+          </td> -->
+        </tr>
+      </ng-container>
+    </table>
+  </div>
+</div>

@@ -14,7 +14,8 @@ export class AppComponent implements OnInit {
   rolls: RollButton[];
   frames: Frame[];
   currentFrame: Frame;
-  totalScore: number = 0;
+  totalScore = 0;
+  gameStatus = 'Not Started';
 
   ngOnInit() {
     GameManager.initializeGame();
@@ -26,6 +27,12 @@ export class AppComponent implements OnInit {
     this.currentFrame = GameManager.roll(rollValue);
     this.totalScore = GameManager.calculateScore();
     this.rolls = GameManager.generateRollButtons();
+    const gameEnds = GameManager.isGameEnds();
+    if (gameEnds) {
+      this.gameStatus = 'Completed';
+    } else {
+      this.gameStatus = 'In Progress';
+    }
   }
   getCurrentFrameClass(currentIndex) {
     if (this.currentFrame) {

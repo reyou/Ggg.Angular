@@ -3,27 +3,27 @@ import { TranslationWidth } from '@angular/common';
 
 export default class Frame {
   private rolls: number[];
-  private spare: boolean = false;
-  private strike: boolean = false;
+  private spare = false;
+  private strike = false;
   public rowNumber: number;
 
-  public completed: boolean = false;
+  public completed = false;
   score: any;
-  extra: number = 0;
+  extra = 0;
   constructor() {
     this.rolls = [];
     this.score = 0;
   }
-  isSpare() {
+  public isSpare() {
     return this.spare;
   }
-  isStrike() {
+  public isStrike() {
     return this.strike;
   }
   getRolls(): number[] {
     return this.rolls;
   }
-  isFullPoints() {
+  public isFullPoints() {
     return this.score === 30;
   }
   roll(rollPoint: number) {
@@ -37,12 +37,12 @@ export default class Frame {
     }
   }
   rollForLastFrame(rollPoint: number) {
-    if (this.rolls.length == 0) {
+    if (this.rolls.length === 0) {
       this.rolls.push(rollPoint);
       if (rollPoint === 10) {
         this.strike = true;
       }
-    } else if (this.rolls.length == 1) {
+    } else if (this.rolls.length === 1) {
       this.rolls.push(rollPoint);
       if (!this.strike) {
         const firstRoll = this.rolls[0];
@@ -53,9 +53,10 @@ export default class Frame {
           this.spare = true;
         } else {
           this.spare = false;
+          this.completed = true;
         }
       }
-    } else if (this.rolls.length == 2) {
+    } else if (this.rolls.length === 2) {
       if (this.strike || this.spare) {
         this.rolls.push(rollPoint);
       } else {
@@ -65,8 +66,8 @@ export default class Frame {
     }
   }
 
-  rollForFrame(rollPoint: number) {
-    if (this.rolls.length == 0) {
+  public rollForFrame(rollPoint: number) {
+    if (this.rolls.length === 0) {
       this.rolls.push(rollPoint);
       if (rollPoint === 10) {
         this.strike = true;
@@ -84,14 +85,15 @@ export default class Frame {
       this.completed = true;
     }
   }
-  getFirstRollScore() {
+  // tslint:disable-next-line: typedef
+  public getFirstRollScore() {
     if (this.rolls.length > 0) {
       return this.rolls[0];
     }
     return 0;
   }
-  getBothRollScore() {
-    if (this.rolls.length == 1) {
+  public getBothRollScore() {
+    if (this.rolls.length === 1) {
       return this.rolls[0];
     } else if (this.rolls.length > 1) {
       return this.rolls[0] + this.rolls[1];
@@ -99,14 +101,11 @@ export default class Frame {
     return 0;
   }
 
-  getRollsTotal(): any {
+  public getRollsTotal(): any {
     let total = 0;
-    for (let i = 0; i < this.rolls.length; i++) {
-      total += this.rolls[i];
+    for (const roll of this.rolls) {
+      total += roll;
     }
     return total;
-  }
-  print() {
-    console.log(JSON.stringify(this));
   }
 }
